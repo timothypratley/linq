@@ -5,4 +5,6 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [korma "0.3.0-RC5"]
+                 [incanter/incanter-core "1.4.1"]
+                 [incanter/incanter-charts "1.4.1"]
                  [org.clojars.gukjoon/ojdbc "1.4"]])
