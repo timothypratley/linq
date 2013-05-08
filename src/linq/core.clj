@@ -33,25 +33,25 @@
 
 
 
-;; .Select(x => x + 1)
+;; [1 2 3 4].Select(x => x + 1)
 
 (map inc [1 2 3 4])
 
 
 
-;; .Where(x => x%2 == 0)
+;; [1 2 3 4].Where(x => x%2 == 0)
 
 (filter odd? [1 2 3 4])
 
 
 
-;; .Where(x => x%2 == 0).Select(x => x + 1)
+;; [1 2 3 4].Where(x => x%2 == 0).Select(x => x + 1)
 
 (map inc (filter odd? [1 2 3 4]))
 
 
 
-;; .GroupBy(w => w.Length)
+;; words.GroupBy(w => w.Length)
 
 (let [words ["the" "quick" "brown" "fox"]]
   (group-by count words))
@@ -82,6 +82,7 @@
 ;     (take 5)
 ;     (drop 2)
 ;     first
+;     last
      )
 
 
@@ -105,10 +106,10 @@
 
 
 
-;; SelectMany
+;; SelectMany   (flatten)
 
-(let lines ["an apple a day"
-             "the quick brown fox"]
+(let [lines ["an apple a day"
+             "the quick brown fox"]]
   (mapcat (fn [line]
             (re-seq #"\w+" line))
           lines))
@@ -172,14 +173,10 @@
 
 
 
-
-
-
-
 ;; aggregate factorial
 ;; 1 * 2 * 3 * 4 == 24
+(range 1 5)
 (reduce * (range 1 5))
-
 
 
 ;; word counting
@@ -203,14 +200,6 @@ words
 
 
 
-
-
-
-
-
-
-
-
 (defn random-normal []
   (reduce + -49.5 (repeatedly 100 rand)))
 
@@ -223,10 +212,10 @@ words
 
 ;; Random walk
 
-(defn step [prev]
-  (+ prev
+(defn step [curr]
+  (+ curr
      (* (random-normal)
-        prev
+        curr
         0.05)))
 
 (view (line-chart
@@ -234,7 +223,8 @@ words
        (take 300 (iterate step 1500))))
 
 
-
+;; more abstractions
+;; code is dense
 
 
 

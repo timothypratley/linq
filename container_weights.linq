@@ -1,4 +1,4 @@
-<Query Kind="Expression">
+<Query Kind="Statements">
   <Connection>
     <ID>856cf0d4-2ba0-43a7-bfef-583a4c06dcf4</ID>
     <Persist>true</Persist>
@@ -22,20 +22,26 @@
 // Looking at the data
 
 Containers.Any(c => c.Weight < 0)
+.Dump();
 //< 1
 //.All
 //< 100
 
 
-from c in Containers
-orderby c.Weight
-select c.Weight
+
+//(from c in Containers
+//orderby c.Weight
+//select c.Weight)
+//.Dump();
+
 
 
 // Histogram of the data
 
-(from c in Containers.ToList()
-group c by Math.Round(c.Weight ?? -10M) into g
-orderby g.Key
-select g)
-.Select(g => Tuple.Create(g.Key, g.Count()))
+//(from c in Containers.ToList()
+//group c by Math.Round(c.Weight ?? -10M) into g
+//orderby g.Key
+//select g)
+//.Select(g => Tuple.Create(g.Key, g.Count()))
+//.Dump();
+//

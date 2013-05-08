@@ -30,15 +30,15 @@ lines.Select(line => Regex.Split(line, @"\W+"))
 .Dump();
 
 
-(from line in lines
-from word in Regex.Split(line, @"\W+")
-select word)
-.Dump();
-
-// or
-
-lines.SelectMany(line => Regex.Split(line, @"\W+"))
-.Dump();
+//(from line in lines
+//from word in Regex.Split(line, @"\W+")
+//select word)
+//.Dump();
+//
+//// or
+//
+//lines.SelectMany(line => Regex.Split(line, @"\W+"))
+//.Dump();
 
 
 

@@ -1,5 +1,6 @@
 <Query Kind="Statements" />
 
+// Select is a higher order function
 Enumerable.Select(
 	new [] {1, 2, 3},
 	x => x + 1)
@@ -15,6 +16,6 @@ f(2).Dump();
 a = 10;
 f(2).Dump();
 
-
+// closure
 
 
