@@ -1,12 +1,4 @@
-<Query Kind="Program">
-  <Connection>
-    <ID>f2f6e2b4-0f40-48df-b2c7-82584a77c393</ID>
-    <Server>.\SQLEXPRESS</Server>
-    <AttachFile>true</AttachFile>
-    <UserInstance>true</UserInstance>
-    <AttachFileName>&lt;ApplicationData&gt;\LINQPad\Nutshell.mdf</AttachFileName>
-  </Connection>
-</Query>
+<Query Kind="Program" />
 
 public static IEnumerable<T> Generate<T>(T current, Func<T,T> step)
 {
@@ -17,7 +9,7 @@ public static IEnumerable<T> Generate<T>(T current, Func<T,T> step)
    }
 }
 
-// Generate(x, f) => [x, f(x), f(f(x)), f(f(f(x))), ...]
+// Generate(x, f) => x, f(x), f(f(x)), f(f(f(x))), ...
 // as an infinite lazy sequence
 
 
@@ -40,8 +32,20 @@ void Main()
 //	.Dump();
 //
 
-// see RandomNormal below
-	// Test our distribution
+
+	// Add random numbers together
+	Random r = new Random();
+	Func<double> RandomNormal = () =>
+		Generate(
+			r.NextDouble(),
+			x => r.NextDouble())
+		.Take(100)
+		.Sum()
+		- 49.5;
+		
+	//RandomNormal().Dump();
+
+	// Check the distribution by generating 10000 numbers
 //	Generate(
 //		RandomNormal(),
 //		x => RandomNormal())
@@ -60,16 +64,8 @@ void Main()
 //	.Take(300)
 //	.Zip(Enumerable.Range(0, 300), Tuple.Create)
 //	.Dump();
+
 }
 
 
-Random r = new Random();
-double RandomNormal() {
-	// Normal distribution
-	return Generate(
-		r.NextDouble(),
-		x => r.NextDouble())
-	.Take(100)
-	.Sum()
-	- 49.5;
-}
+
